@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taglib 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xmlns="http://java.sun.com/xml/ns/javaee"
+xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd" version="2.1">
+	<display-name>Counter Utils</display-name>
+	<tlib-version>1.0</tlib-version>
+	<short-name>counter</short-name>
+	<uri>http://bizonos.com/counter</uri>
+	<tag>
+		<display-name>set</display-name>
+		<name>set</name>
+		<tag-class>com.bizonos.util.CounterTag</tag-class>
+		<body-content>scriptless</body-content>
+		<variable>
+			<name-from-attribute>var</name-from-attribute>
+			<variable-class>java.lang.Integer</variable-class>
+			<scope>AT_END</scope>
+		</variable>
+		<variable>
+			<name-given>liferayutilcounter</name-given>
+			<variable-class>java.lang.Integer</variable-class>
+			<declare>false</declare>			
+			<scope>NESTED</scope>
+		</variable>
+		<attribute>
+			<name>var</name>
+			<required>true</required>
+			<rtexprvalue>false</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		
+	</tag>
+	<tag>
+		<display-name>increment</display-name>
+		<name>increment</name>
+		<tag-class>com.bizonos.util.CounterIncrement</tag-class>
+		<body-content>empty</body-content>
+	</tag>
+</taglib>
