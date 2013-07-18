@@ -4,17 +4,26 @@ import java.io.IOException;
 
 import javax.servlet.jsp.JspContext;
 import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
-public class CounterTag extends SimpleTagSupport {
+public class CounterTag extends CounterTagSupport {
 	
-	public static final String tagNamespace = "liferayutil";
-	public static final String counterVarName = tagNamespace + "counter";
 	private String var;
 
 	private Integer parentCounter = null;
+	private String namespace = null;
+
+	private String counterVarName;
 	
+	public String getNamespace() {
+		return namespace;
+	}
+
+	public void setNamespace(String namespace) {
+		this.namespace = namespace;
+		this.counterVarName = namespace + "counter";
+	}
+
 	public String getVar() {
 		return var;
 	}
@@ -27,20 +36,17 @@ public class CounterTag extends SimpleTagSupport {
 	public void doTag() throws JspException, IOException {
 		
 		JspContext jspContext = getJspContext();
-		parentCounter = (Integer)jspContext.getAttribute(
-				counterVarName, PageContext.REQUEST_SCOPE);
-		jspContext.setAttribute(counterVarName, 0, PageContext.REQUEST_SCOPE);
+		parentCounter = (Integer)getRequestAttribute(counterVarName);
+		setRequestAttribute(counterVarName, 0);
 		getJspBody().invoke(null);
-		jspContext.setAttribute(
-				getVar(), jspContext.getAttribute(
-						counterVarName, PageContext.REQUEST_SCOPE), PageContext.REQUEST_SCOPE);
+		setRequestAttribute(
+				getVar(), getRequestAttribute(counterVarName));
 		if (parentCounter != null) {
-			jspContext.setAttribute(
-					counterVarName, parentCounter, PageContext.REQUEST_SCOPE);
+			setRequestAttribute(counterVarName, parentCounter);
 		}
 		else {
-			jspContext.removeAttribute(
-					counterVarName, PageContext.REQUEST_SCOPE);
+			removeRequestAttribute(counterVarName);
 		}
 	}
+	
 }

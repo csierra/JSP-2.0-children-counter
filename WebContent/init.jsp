@@ -31,6 +31,5 @@
 		</liferay:panel>
 	</liferay:panel-container>
 	
-	<h2>salida <span> ${salida} ${salida2}</span></h2>
 </body>
 </html>

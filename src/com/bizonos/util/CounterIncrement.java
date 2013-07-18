@@ -3,18 +3,30 @@ package com.bizonos.util;
 import java.io.IOException;
 
 import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.PageContext;
-import javax.servlet.jsp.tagext.SimpleTagSupport;
 
-public class CounterIncrement extends SimpleTagSupport {
+public class CounterIncrement extends CounterTagSupport {
+	
+	private String namespace;
+	private String counterVarName;
+	
+	
+	public String getNamespace() {
+		return namespace;
+	}
+
+
+	public void setNamespace(String namespace) {
+		this.namespace = namespace;
+		this.counterVarName = namespace + "counter";
+	}
+	
+
 	@Override
 	public void doTag() throws JspException, IOException {
-		Integer counter = (Integer)getJspContext().getAttribute(
-				CounterTag.counterVarName, PageContext.REQUEST_SCOPE);
+		Integer counter = (Integer)getRequestAttribute(counterVarName);
 		if (counter == null) {
 			throw new Error("No parent counter found");
 		}
-		getJspContext().setAttribute(
-				CounterTag.counterVarName, counter + 1, PageContext.REQUEST_SCOPE);
+		setRequestAttribute(counterVarName, counter + 1);
 	}
 }
