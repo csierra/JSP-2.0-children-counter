@@ -2,9 +2,7 @@ package com.bizonos.util;
 
 import java.io.IOException;
 
-import javax.servlet.jsp.JspContext;
 import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 public class CounterTag extends CounterTagSupport {
 	
@@ -35,7 +33,6 @@ public class CounterTag extends CounterTagSupport {
 	@Override
 	public void doTag() throws JspException, IOException {
 		
-		JspContext jspContext = getJspContext();
 		parentCounter = (Integer)getRequestAttribute(counterVarName);
 		setRequestAttribute(counterVarName, 0);
 		getJspBody().invoke(null);
