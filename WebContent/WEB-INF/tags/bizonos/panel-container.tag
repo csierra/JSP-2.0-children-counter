@@ -6,6 +6,6 @@
 </counter:set>
 
 <div class="panel-container">
-	<div>This panel has <span>${chlidre}</span> children</div>
+	<div>This panel has <span>${children}</span> chlidren</div>
 	${output}
 </div>
