@@ -17,12 +17,6 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns
 			<variable-class>java.lang.Integer</variable-class>
 			<scope>AT_END</scope>
 		</variable>
-		<variable>
-			<name-given>liferayutilcounter</name-given>
-			<variable-class>java.lang.Integer</variable-class>
-			<declare>false</declare>			
-			<scope>NESTED</scope>
-		</variable>
 		<attribute>
 			<name>var</name>
 			<required>true</required>
