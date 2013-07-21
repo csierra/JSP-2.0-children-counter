@@ -1,7 +1,7 @@
 <%@ tag body-content="scriptless"%>
 <%@ taglib prefix="counter" uri="http://bizonos.com/counter" %>
 
-<counter:set var="children" namespace="counter">
+<counter:set var="children" namespace="panel">
 	<jsp:doBody var="output"/>
 </counter:set>
 
